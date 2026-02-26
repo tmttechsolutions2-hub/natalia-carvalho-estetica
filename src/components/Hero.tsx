@@ -11,8 +11,8 @@ const Hero = () => {
 
             {/* ── MOBILE LAYOUT ── */}
             <div className="lg:hidden flex flex-col min-h-[100svh] bg-[var(--background-dark)]">
-                {/* Photo of Natália - Full width, natural height to prevent head crop */}
-                <div className="w-full bg-white pt-4">
+                {/* Photo of Natália - Pushed down with large padding to avoid header overlap */}
+                <div className="w-full bg-white pt-24 pb-4">
                     <img
                         src="/images/natalia-profissional.png"
                         alt="Natália Carvalho"
@@ -22,9 +22,9 @@ const Hero = () => {
 
                 {/* Text content below the photo */}
                 <motion.div
-                    initial={{ opacity: 0, y: 30 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    transition={{ duration: 1 }}
                     className="relative z-10 bg-[var(--background-dark)] px-6 pt-10 pb-14 text-center flex-1 flex flex-col justify-center"
                 >
                     <span className="text-gold-500 font-sans uppercase tracking-[0.5em] text-[10px] mb-4 block font-bold">

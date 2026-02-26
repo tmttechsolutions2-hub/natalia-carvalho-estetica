@@ -295,18 +295,6 @@ export default function BookingWizard() {
 
     return (
         <div className="max-w-7xl mx-auto px-4 py-8 animate-in fade-in duration-500">
-            {/* Premium Banner */}
-            <div className="w-full h-[200px] md:h-[300px] mb-10 rounded-3xl overflow-hidden relative shadow-2xl group">
-                <img
-                    src="/images/clinic_booking_banner.png"
-                    alt="Ambiente da Clínica"
-                    className="w-full h-full object-cover object-[center_70%] transition-transform duration-1000 group-hover:scale-105"
-                />
-                <div className="absolute inset-0 bg-charcoal/40 bg-gradient-to-b from-transparent via-charcoal/20 to-charcoal/90 flex flex-col justify-center items-center text-center p-6">
-                    <h2 className="text-3xl md:text-5xl font-serif font-bold text-white mb-3 drop-shadow-md">Agende seu horário</h2>
-                    <p className="text-gold-400 font-bold tracking-widest uppercase text-xs md:text-sm drop-shadow-sm">Escolha os serviços desejados</p>
-                </div>
-            </div>
 
             {/* Header & Progress Bar */}
             <div className="mb-8 relative z-10">
@@ -354,8 +342,17 @@ export default function BookingWizard() {
 
             {/* Step Content Area */}
             <div className="bg-white border border-nude-100/60 rounded-[32px] p-6 md:p-10 shadow-sm relative overflow-hidden min-h-[400px]">
+                {/* Subtle Background Image */}
+                <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+                    <img
+                        src="/images/clinic_booking_banner.png"
+                        alt=""
+                        className="w-full h-full object-cover grayscale"
+                    />
+                </div>
+
                 {/* Decorative glows */}
-                <div className="absolute top-0 right-0 w-64 h-64 bg-gold-400/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+                <div className="absolute top-0 right-0 w-64 h-64 bg-gold-400/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none z-0"></div>
 
                 {currentStep === 1 && (
                     <div className="animate-in slide-in-from-right-4 fade-in duration-300">

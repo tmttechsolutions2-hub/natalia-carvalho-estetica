@@ -9,8 +9,8 @@ const WhatsAppButton = () => {
     const message = encodeURIComponent("Olá Natália! Gostaria de saber mais sobre os seus serviços de estética.");
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
-    // Hide on admin routes
-    if (pathname?.startsWith("/admin") || pathname?.startsWith("/login")) {
+    // Hide on admin, login and booking routes
+    if (pathname?.startsWith("/admin") || pathname?.startsWith("/login") || pathname?.startsWith("/agendamento")) {
         return null;
     }
 

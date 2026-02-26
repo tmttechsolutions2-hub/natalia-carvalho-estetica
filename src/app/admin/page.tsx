@@ -278,16 +278,16 @@ export default function AdminDashboard() {
                     </div>
                 </div>
 
-                <div className="relative z-10 flex space-x-8 md:space-x-12">
-                    <div className="text-right">
+                <div className="relative z-10 flex justify-between md:justify-end md:space-x-12 w-full md:w-auto">
+                    <div className="text-center md:text-right flex-1 md:flex-none">
                         <p className="text-white/80 text-xs uppercase tracking-widest font-bold mb-1">Faturamento</p>
-                        <p className="text-3xl font-bold text-white">
+                        <p className="text-2xl md:text-3xl font-bold text-white">
                             {dailyRevenueValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
                         </p>
                     </div>
-                    <div className="text-right border-l border-white/20 pl-8 md:pl-12">
+                    <div className="text-center md:text-right border-l border-white/20 pl-4 md:pl-12 flex-1 md:flex-none">
                         <p className="text-white/80 text-xs uppercase tracking-widest font-bold mb-1">Concluídos</p>
-                        <p className="text-3xl font-bold text-white">{completedCount}</p>
+                        <p className="text-2xl md:text-3xl font-bold text-white">{completedCount}</p>
                     </div>
                 </div>
             </div>
@@ -303,7 +303,7 @@ export default function AdminDashboard() {
                         <span>Sua Agenda</span>
                         <div className="h-px w-12 bg-gold-500/40 ml-4 hidden sm:block"></div>
                     </h3>
-                    <div className="flex items-center space-x-2 text-sm bg-white border border-nude-100 rounded-full px-2 py-1.5 shadow-sm">
+                    <div className="flex items-center space-x-2 text-sm bg-white border border-nude-100 rounded-full px-2 py-1.5 shadow-sm mx-auto sm:mx-0">
                         <button onClick={handlePrevMonth} className="text-charcoal/40 hover:text-gold-500 hover:bg-gold-50 w-8 h-8 rounded-full flex items-center justify-center transition-colors font-bold text-lg">&lt;</button>
                         <span className="font-bold text-charcoal min-w-[120px] text-center tracking-wide">{formatMonthYear()}</span>
                         <button onClick={handleNextMonth} className="text-charcoal/40 hover:text-gold-500 hover:bg-gold-50 w-8 h-8 rounded-full flex items-center justify-center transition-colors font-bold text-lg">&gt;</button>

@@ -1,12 +1,18 @@
 "use client";
 
-import React from "react";
+import { usePathname } from "next/navigation";
 import { motion } from "framer-motion";
 
 const WhatsAppButton = () => {
+    const pathname = usePathname();
     const phoneNumber = "5537988047154";
     const message = encodeURIComponent("Olá Natália! Gostaria de saber mais sobre os seus serviços de estética.");
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
+
+    // Hide on admin routes
+    if (pathname?.startsWith("/admin") || pathname?.startsWith("/login")) {
+        return null;
+    }
 
     return (
         <motion.div

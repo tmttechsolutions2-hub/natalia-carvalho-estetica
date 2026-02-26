@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { Bell, LogOut, Scissors, X, Loader2 } from "lucide-react";
 import { supabase } from "../../lib/supabase";
 
@@ -13,6 +14,35 @@ export default function AdminLayout({
     const [isNotificationOpen, setIsNotificationOpen] = useState(false);
     const [recentBookings, setRecentBookings] = useState<any[]>([]);
     const [isLoadingNotifications, setIsLoadingNotifications] = useState(false);
+    const [isCheckingAuth, setIsCheckingAuth] = useState(true);
+    const router = useRouter();
+
+    useEffect(() => {
+        const checkAuth = async () => {
+            const { data: { session } } = await supabase.auth.getSession();
+            if (!session) {
+                router.push("/login");
+            } else {
+                setIsCheckingAuth(false);
+            }
+        };
+        checkAuth();
+
+        const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
+            if (!session) {
+                router.push("/login");
+            } else {
+                setIsCheckingAuth(false);
+            }
+        });
+
+        return () => subscription.unsubscribe();
+    }, [router]);
+
+    const handleLogout = async () => {
+        await supabase.auth.signOut();
+        router.push("/login");
+    };
 
     const fetchRecentBookings = async () => {
         setIsLoadingNotifications(true);
@@ -59,6 +89,15 @@ export default function AdminLayout({
         }
     }, [isNotificationOpen]);
 
+    if (isCheckingAuth) {
+        return (
+            <div className="min-h-screen bg-[#faf9f7] flex flex-col items-center justify-center space-y-4">
+                <Loader2 className="w-12 h-12 text-gold-500 animate-spin" />
+                <p className="text-charcoal/40 font-serif text-lg italic animate-pulse">Verificando acesso...</p>
+            </div>
+        );
+    }
+
     return (
         <div className="min-h-screen bg-[#f8f9fa] text-charcoal font-sans selection:bg-gold-500/30">
             {/* Topbar */}
@@ -77,7 +116,7 @@ export default function AdminLayout({
                         <span className="absolute top-1.5 right-1.5 w-2.5 h-2.5 bg-red-500 rounded-full border-2 border-white"></span>
                     </button>
                     <button
-                        onClick={() => window.location.href = '/'}
+                        onClick={handleLogout}
                         className="flex items-center space-x-2 text-red-500 hover:text-red-400 transition-colors font-medium text-sm ml-4 border-l border-nude-100 pl-6"
                     >
                         <LogOut size={18} />

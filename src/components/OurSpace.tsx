@@ -76,12 +76,11 @@ const OurSpace = () => {
                             className={`relative rounded-[2rem] overflow-hidden shadow-xl group ${photo.className}`}
                         >
                             <div className="absolute inset-0 bg-gold-500/0 group-hover:bg-gold-500/5 transition-colors z-10 duration-500" />
-                            <Image
+                            <img
                                 src={photo.src}
                                 alt={photo.alt}
-                                fill
-                                className="object-cover transition-transform duration-1000 group-hover:scale-105"
-                                priority={index === 0}
+                                className="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105"
+                                loading={index === 0 ? "eager" : "lazy"}
                             />
                             <div className="absolute bottom-0 left-0 w-full p-6 z-20 translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500">
                                 <div className="bg-white/10 backdrop-blur-md border border-white/20 p-3 rounded-xl">

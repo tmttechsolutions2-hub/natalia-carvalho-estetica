@@ -13,13 +13,10 @@ const Hero = () => {
             <div className="lg:hidden flex flex-col min-h-[100svh]">
                 {/* Photo of Natália - takes up the top ~60% */}
                 <div className="relative flex-1 min-h-[55vh]">
-                    <Image
+                    <img
                         src="/images/natalia-profissional.png"
                         alt="Natália Carvalho"
-                        fill
-                        className="object-cover object-top"
-                        priority
-                        unoptimized
+                        className="w-full h-full object-cover object-top"
                     />
                     {/* Fade to dark at the bottom */}
                     <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--background-dark)] to-transparent" />
@@ -64,13 +61,10 @@ const Hero = () => {
             <div className="hidden lg:block relative h-screen">
                 {/* Background Image */}
                 <div className="absolute inset-0 z-0">
-                    <Image
+                    <img
                         src="/images/hero-full-bg-final.jpg"
                         alt="Natália Carvalho Estética"
-                        fill
-                        className="object-cover object-[15%_center] scale-[1.02]"
-                        priority
-                        unoptimized
+                        className="w-full h-full object-cover object-[15%_center] scale-[1.02]"
                     />
                     {/* Desktop Gradients */}
                     <div className="absolute inset-0 bg-gradient-to-l from-[var(--background-dark)] via-[var(--background-dark)]/80 to-transparent z-10" />

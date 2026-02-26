@@ -374,7 +374,7 @@ export default function BookingWizard() {
                                             key={service.id}
                                             onClick={() => toggleService(service)}
                                             className={`flex flex-col text-left p-5 rounded-2xl border-2 transition-all ${isSelected
-                                                ? "border-gold-500 bg-gold-50/30 shadow-md shadow-gold-500/10"
+                                                ? "border-gold-500 bg-white shadow-md shadow-gold-500/10"
                                                 : "border-nude-100 bg-white hover:border-gold-500/50 hover:shadow-sm"
                                                 }`}
                                         >

@@ -12,11 +12,11 @@ const Hero = () => {
             {/* ── MOBILE LAYOUT ── */}
             <div className="lg:hidden flex flex-col min-h-[100svh]">
                 {/* Photo of Natália - takes up the top ~60% */}
-                <div className="relative flex-1 min-h-[55vh]">
+                <div className="relative flex-1 min-h-[60vh]">
                     <img
                         src="/images/natalia-profissional.png"
                         alt="Natália Carvalho"
-                        className="w-full h-full object-cover object-top"
+                        className="w-full h-full object-cover object-center"
                     />
                     {/* Fade to dark at the bottom */}
                     <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--background-dark)] to-transparent" />

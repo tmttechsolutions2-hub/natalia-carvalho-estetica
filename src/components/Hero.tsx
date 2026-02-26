@@ -12,7 +12,7 @@ const Hero = () => {
             {/* ── MOBILE LAYOUT ── */}
             <div className="lg:hidden flex flex-col min-h-[100svh] bg-[var(--background-dark)]">
                 {/* Photo of Natália - Pushed down with large padding to avoid header overlap */}
-                <div className="w-full bg-white pt-24 pb-4">
+                <div className="w-full bg-white pt-24">
                     <img
                         src="/images/natalia-profissional.png"
                         alt="Natália Carvalho"

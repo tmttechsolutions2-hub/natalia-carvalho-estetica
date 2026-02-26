@@ -295,17 +295,21 @@ export default function BookingWizard() {
 
                 const webhookUrl = "https://tmttech-manager.vercel.app/api/webhook/custom/ac6e8583-a361-48d7-8cdf-535ec3bdb862?empresaId=7598fb30-3852-4a75-9259-18825da4a316";
 
+                const payload = {
+                    phone: phoneWithDDI,
+                    name: bookingData.client.name,
+                    data: {
+                        servico: servicesString,
+                        data_agendamento: formattedDateTime
+                    }
+                };
+
+                console.log("Enviando Webhook para TMT Manager:", payload);
+
                 await fetch(webhookUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        phone: phoneWithDDI,
-                        name: bookingData.client.name,
-                        data: {
-                            servico: servicesString,
-                            data_agendamento: formattedDateTime
-                        }
-                    })
+                    body: JSON.stringify(payload)
                 });
             } catch (webhookErr) {
                 console.error("Webhook error:", webhookErr);

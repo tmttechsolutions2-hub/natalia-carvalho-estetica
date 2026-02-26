@@ -24,6 +24,7 @@ const About = () => {
                                     alt="Natália Carvalho"
                                     fill
                                     className="object-cover object-top"
+                                    unoptimized
                                 />
                             </div>
                         </div>

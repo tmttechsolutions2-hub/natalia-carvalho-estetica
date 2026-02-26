@@ -10,18 +10,14 @@ const Hero = () => {
         <section className="relative overflow-hidden bg-[var(--background-dark)]">
 
             {/* ── MOBILE LAYOUT ── */}
-            <div className="lg:hidden flex flex-col min-h-[100svh]">
-                {/* Photo of Natália - takes up the top ~60% */}
-                <div className="relative flex-1 min-h-[60vh]">
+            <div className="lg:hidden flex flex-col min-h-[100svh] bg-[var(--background-dark)]">
+                {/* Photo of Natália - Full width, natural height to prevent head crop */}
+                <div className="w-full bg-white pt-4">
                     <img
                         src="/images/natalia-profissional.png"
                         alt="Natália Carvalho"
-                        className="w-full h-full object-cover object-[center_15%]"
+                        className="w-full h-auto block"
                     />
-                    {/* Fade to dark at the bottom */}
-                    <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--background-dark)] to-transparent" />
-                    {/* Subtle top fade */}
-                    <div className="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-[var(--background-dark)]/60 to-transparent" />
                 </div>
 
                 {/* Text content below the photo */}
@@ -29,7 +25,7 @@ const Hero = () => {
                     initial={{ opacity: 0, y: 30 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, ease: [0.19, 1, 0.22, 1] }}
-                    className="relative z-10 bg-[var(--background-dark)] px-6 pt-2 pb-14 text-center"
+                    className="relative z-10 bg-[var(--background-dark)] px-6 pt-10 pb-14 text-center flex-1 flex flex-col justify-center"
                 >
                     <span className="text-gold-500 font-sans uppercase tracking-[0.5em] text-[10px] mb-4 block font-bold">
                         Realce &amp; Exclusividade

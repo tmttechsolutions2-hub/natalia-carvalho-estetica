@@ -91,6 +91,17 @@ const Navbar = () => {
                 {/* Decorative gold accent at top */}
                 <div className="h-1 w-full bg-gradient-to-r from-transparent via-gold-400 to-transparent"></div>
 
+                {/* Close Button */}
+                <div className="flex justify-end px-6 pt-5">
+                    <button
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        className="w-12 h-12 flex items-center justify-center rounded-full border border-nude-100 text-charcoal hover:text-gold-500 hover:border-gold-500 transition-colors"
+                        aria-label="Fechar menu"
+                    >
+                        <X size={22} />
+                    </button>
+                </div>
+
                 <div className="flex flex-col justify-center items-center flex-1 px-8 space-y-2">
                     {/* Logo inside menu */}
                     <div className="relative h-14 w-52 mb-8">

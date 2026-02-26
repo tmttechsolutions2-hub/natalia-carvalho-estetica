@@ -12,12 +12,14 @@ const Hero = () => {
             {/* ── MOBILE LAYOUT ── */}
             <div className="lg:hidden flex flex-col min-h-[100svh] bg-[var(--background-dark)]">
                 {/* Photo of Natália - Pushed down with large padding to avoid header overlap */}
-                <div className="w-full bg-white pt-24">
+                <div className="w-full bg-white pt-24 relative">
                     <img
                         src="/images/natalia-profissional.png"
                         alt="Natália Carvalho"
                         className="w-full h-auto block"
                     />
+                    {/* Seamless fade to dark at the bottom */}
+                    <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-[var(--background-dark)] to-transparent" />
                 </div>
 
                 {/* Text content below the photo */}

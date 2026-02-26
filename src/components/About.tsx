@@ -20,10 +20,10 @@ const About = () => {
                         <div className="aspect-[3/4] relative rounded-t-full rounded-b-3xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] z-10 p-2 bg-white border border-nude-100">
                             <div className="relative w-full h-full rounded-t-full rounded-b-2xl overflow-hidden">
                                 <Image
-                                    src="/images/natalia-quem-somos.jpg"
+                                    src="/images/natalia-profissional.png"
                                     alt="Natália Carvalho"
                                     fill
-                                    className="object-cover"
+                                    className="object-cover object-top"
                                 />
                             </div>
                         </div>

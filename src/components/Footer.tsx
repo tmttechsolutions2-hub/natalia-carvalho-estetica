@@ -1,23 +1,24 @@
 "use client";
 
 import React from "react";
+import Link from "next/link";
 import { Instagram, Facebook, MapPin, Clock } from "lucide-react";
 
 const Footer = () => {
     const currentYear = new Date().getFullYear();
 
     return (
-        <footer className="bg-charcoal text-white pt-20 pb-10">
+        <footer className="bg-[var(--background-dark-alt)] text-white pt-20 pb-10">
             <div className="container mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
                     {/* Brand */}
                     <div className="lg:col-span-1">
                         <h3 className="text-2xl font-serif mb-6 text-gold-500">Natália Carvalho Estética</h3>
                         <p className="text-white/50 text-sm leading-relaxed mb-8">
-                            Especialista em realçar a sua beleza natural com técnicas avançadas e atendimento personalizado.
+                            Especialista em <span className="text-gold-500 font-medium">realçar a sua beleza natural</span> com <span className="text-gold-500 font-medium">técnicas avançadas</span> e atendimento personalizado.
                         </p>
                         <div className="flex space-x-4">
-                            <a href="#" className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:border-gold-500 hover:text-gold-500 transition-colors">
+                            <a href="https://www.instagram.com/nataliacarvalho_estetica/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:border-gold-500 hover:text-gold-500 transition-colors">
                                 <Instagram size={18} />
                             </a>
                             <a href="#" className="w-10 h-10 border border-white/10 rounded-full flex items-center justify-center hover:border-gold-500 hover:text-gold-500 transition-colors">
@@ -68,14 +69,14 @@ const Footer = () => {
                         <p className="text-sm text-white/60 leading-relaxed mb-6">
                             Avenida Oswaldo Machado Gontijo, 984 <br />
                             Centro, Divinópolis - MG <br />
-                            CEP: 35500-000
+                            CEP: 35500-037
                         </p>
-                        <a
-                            href="https://wa.me/553799999999"
+                        <Link
+                            href="/agendamento"
                             className="text-xs font-bold uppercase tracking-[0.2em] text-gold-500 hover:text-gold-400 border-b border-gold-500/30 pb-1"
                         >
                             Agendar Procedimento
-                        </a>
+                        </Link>
                     </div>
                 </div>
 

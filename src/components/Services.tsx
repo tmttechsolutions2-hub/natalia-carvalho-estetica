@@ -1,8 +1,10 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
-import { Sparkles, Flower2, Scissors, User2, Wind, Droplets } from "lucide-react";
+import Link from "next/link";
+import { Sparkles, Flower2, Scissors, User2, Wind, Droplets, Loader2 } from "lucide-react";
+import { supabase } from "../lib/supabase";
 
 interface ServiceProps {
     title: string;
@@ -18,64 +20,52 @@ const ServiceCard = ({ title, price, description, icon, delay }: ServiceProps) =
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6, delay }}
-        className="bg-white p-8 rounded-2xl shadow-sm border border-nude-100/50 hover:border-gold-500/30 hover:shadow-xl hover:shadow-gold-500/5 transition-all group"
+        className="bg-white p-8 md:p-10 rounded-xl shadow-[0_10px_40px_-15px_rgba(0,0,0,0.05)] hover:shadow-[0_20px_50px_-10px_rgba(180,148,102,0.15)] transition-all duration-500 h-full flex flex-col group border border-nude-50"
     >
-        <div className="w-14 h-14 bg-nude-50 rounded-2xl flex items-center justify-center mb-6 group-hover:bg-gold-500 group-hover:text-white transition-colors">
-            {icon}
+        <div className="flex justify-between items-start mb-6">
+            <h3 className="text-2xl font-serif text-charcoal">{title}</h3>
+            <div className="w-12 h-12 rounded-full bg-nude-50 flex items-center justify-center text-gold-500 group-hover:bg-gold-500 group-hover:text-white transition-colors duration-500 flex-shrink-0">
+                {icon}
+            </div>
         </div>
-        <div className="flex justify-between items-start mb-4">
-            <h3 className="text-xl font-serif text-charcoal">{title}</h3>
-            <span className="text-gold-600 font-semibold font-sans">{price}</span>
+        <p className="text-charcoal/60 text-sm leading-relaxed mb-8 flex-grow">{description}</p>
+        <div className="flex items-center justify-between pt-6 border-t border-nude-100">
+            <span className="text-charcoal font-bold font-sans">{price}</span>
+            <Link href="/agendamento" className="text-xs font-bold uppercase tracking-widest text-gold-500 hover:text-gold-600 transition-colors">
+                Agendar
+            </Link>
         </div>
-        <p className="text-charcoal/60 text-sm leading-relaxed">{description}</p>
     </motion.div>
 );
 
 const Services = () => {
-    const services = [
-        {
-            title: "Brow Lamination",
-            price: "R$ 100,00",
-            description: "Alinhamento e volume para sobrancelhas mais expressivas e naturais.",
-            icon: <Wind size={28} />,
-            delay: 0.1,
-        },
-        {
-            title: "Lash Lifting",
-            price: "R$ 80,00",
-            description: "Curvatura e hidratação profunda para cílios curvados e destacados.",
-            icon: <Sparkles size={28} />,
-            delay: 0.2,
-        },
-        {
-            title: "Design + Henna",
-            price: "R$ 55,00",
-            description: "Modelagem personalizada com Henna ou Refectocil para um olhar definido.",
-            icon: <Flower2 size={28} />,
-            delay: 0.3,
-        },
-        {
-            title: "Design Geral",
-            price: "R$ 45,00",
-            description: "Design de sobrancelhas masculino e feminino com foco na simetria facial.",
-            icon: <Scissors size={28} />,
-            delay: 0.4,
-        },
-        {
-            title: "Limpeza de Pele",
-            price: "R$ 100,00",
-            description: "Tratamento facial profundo para remoção de impurezas e renovação celular.",
-            icon: <Droplets size={28} />,
-            delay: 0.5,
-        },
-        {
-            title: "Epilação do Buço",
-            price: "R$ 20,00",
-            description: "Remoção precisa e suave de pelos com finalização hidratante.",
-            icon: <User2 size={28} />,
-            delay: 0.6,
-        },
-    ];
+    const [services, setServices] = useState<any[]>([]);
+    const [isLoading, setIsLoading] = useState(true);
+
+    const iconMap: Record<string, React.ReactNode> = {
+        "Brow Lamination": <Wind size={28} />,
+        "Lash Lifting": <Sparkles size={28} />,
+        "Design + Henna": <Flower2 size={28} />,
+        "Design Geral": <Scissors size={28} />,
+        "Limpeza de Pele": <Droplets size={28} />,
+        "default": <User2 size={28} />
+    };
+
+    useEffect(() => {
+        const fetchServices = async () => {
+            const { data, error } = await supabase
+                .from('services')
+                .select('*')
+                .eq('is_active', true)
+                .order('name');
+
+            if (data && !error) {
+                setServices(data);
+            }
+            setIsLoading(false);
+        };
+        fetchServices();
+    }, []);
 
     return (
         <section id="servicos" className="py-24 bg-white">
@@ -89,20 +79,33 @@ const Services = () => {
                     </h2>
                     <div className="h-1 w-20 bg-gold-200 mx-auto rounded-full mb-6" />
                     <p className="text-charcoal/60 font-sans">
-                        Descubra protocolos personalizados desenvolvidos para realçar a sua autenticidade e promover bem-estar.
+                        Descubra <span className="text-gold-600 font-medium">protocolos personalizados</span> desenvolvidos para realçar a sua <span className="text-gold-600 font-medium">autenticidade</span> e promover bem-estar.
                     </p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    {services.map((service, index) => (
-                        <ServiceCard key={index} {...service} />
-                    ))}
-                </div>
+                {isLoading ? (
+                    <div className="flex justify-center items-center py-20">
+                        <Loader2 className="w-10 h-10 text-gold-500 animate-spin" />
+                    </div>
+                ) : (
+                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                        {services.map((service, index) => (
+                            <ServiceCard
+                                key={service.id}
+                                title={service.name}
+                                price={service.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}
+                                description={service.description || ""}
+                                icon={iconMap[service.name] || iconMap["default"]}
+                                delay={index * 0.1}
+                            />
+                        ))}
+                    </div>
+                )}
 
                 <div className="mt-16 text-center">
                     <p className="text-charcoal/50 text-sm mb-6">Ficou com alguma dúvida sobre qual procedimento é ideal para você?</p>
                     <a
-                        href="https:wa.me/553799999999"
+                        href="https://wa.me/553799999999"
                         className="inline-block border-b-2 border-gold-500 text-gold-600 font-bold pb-1 hover:text-gold-700 transition-colors uppercase tracking-widest text-xs"
                     >
                         Falar com a Natália

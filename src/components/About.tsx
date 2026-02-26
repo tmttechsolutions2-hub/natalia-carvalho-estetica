@@ -6,9 +6,9 @@ import { motion } from "framer-motion";
 
 const About = () => {
     return (
-        <section id="sobre" className="py-24 bg-white overflow-hidden">
+        <section id="sobre" className="py-24 lg:py-32 bg-white overflow-hidden">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                     {/* Image side */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -17,19 +17,21 @@ const About = () => {
                         transition={{ duration: 0.8 }}
                         className="relative"
                     >
-                        <div className="aspect-[4/5] relative rounded-3xl overflow-hidden shadow-2xl z-10">
-                            <Image
-                                src="/images/natalia-quem-somos.jpg"
-                                alt="Natália Carvalho"
-                                fill
-                                className="object-cover"
-                            />
+                        <div className="aspect-[3/4] relative rounded-t-full rounded-b-3xl overflow-hidden shadow-[0_20px_60px_-15px_rgba(0,0,0,0.1)] z-10 p-2 bg-white border border-nude-100">
+                            <div className="relative w-full h-full rounded-t-full rounded-b-2xl overflow-hidden">
+                                <Image
+                                    src="/images/natalia-quem-somos.jpg"
+                                    alt="Natália Carvalho"
+                                    fill
+                                    className="object-cover"
+                                />
+                            </div>
                         </div>
                         {/* Decorative element */}
-                        <div className="absolute -top-10 -right-10 w-40 h-40 border-2 border-gold-500/20 rounded-full z-0" />
-                        <div className="absolute -bottom-6 -left-6 bg-gold-500 text-white p-8 rounded-2xl z-20 shadow-xl">
-                            <p className="font-serif text-3xl mb-1">8+</p>
-                            <p className="text-xs uppercase tracking-widest font-bold">Anos de Experiência</p>
+                        <div className="absolute top-10 -right-8 w-full h-full border border-gold-400/30 rounded-t-full rounded-b-3xl z-0" />
+                        <div className="absolute -bottom-8 -left-8 bg-gold-500 text-white p-8 rounded-full aspect-square flex flex-col items-center justify-center z-20 shadow-xl border-4 border-white">
+                            <p className="font-serif text-4xl mb-1 leading-none">8+</p>
+                            <p className="text-[10px] uppercase tracking-widest font-bold text-center">Anos<br />Exp.</p>
                         </div>
                     </motion.div>
 
@@ -39,23 +41,24 @@ const About = () => {
                         whileInView={{ opacity: 1, x: 0 }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8 }}
+                        className="lg:pl-8"
                     >
-                        <span className="text-gold-500 font-semibold uppercase tracking-[0.3em] text-xs mb-3 block">
+                        <span className="text-gold-500 font-semibold uppercase tracking-[0.3em] text-xs mb-4 block">
                             Quem Somos
                         </span>
-                        <h2 className="text-4xl lg:text-5xl font-serif text-charcoal mb-8 leading-tight">
+                        <h2 className="text-5xl lg:text-6xl font-serif text-charcoal mb-8 leading-[1.1]">
                             Natália Carvalho: <br />
-                            <span className="text-gold-500 italic">Paixão por transformar olhares.</span>
+                            <span className="text-gold-500 italic font-light">Paixão por transformar olhares.</span>
                         </h2>
-                        <div className="space-y-6 text-charcoal/70 leading-relaxed font-sans">
+                        <div className="space-y-6 text-charcoal/70 leading-relaxed font-sans text-lg">
                             <p>
-                                Com uma trajetória marcada pela busca constante pela excelência, Natália Carvalho consolidou-se como referência em estética avançada em Divinópolis. Seu foco principal é proporcionar resultados que harmonizem a beleza individual de cada cliente, sempre priorizando a saúde e o bem-estar.
+                                Com uma trajetória marcada pela busca constante pela <span className="text-gold-600 font-medium">excelência</span>, Natália Carvalho consolidou-se como referência em <span className="text-gold-600 font-medium">estética avançada</span> em Divinópolis. Seu foco principal é proporcionar resultados que harmonizem a beleza individual de cada cliente, sempre priorizando a saúde e o bem-estar.
+                            </p>
+                            <p className="pl-6 border-l-2 border-gold-300 italic text-charcoal/60 my-8">
+                                "Inauguramos nosso espaço com o objetivo de elevar o conceito de autocuidado, oferecendo um ambiente acolhedor e técnicas de ponta que garantem <span className="text-gold-600 font-medium">precisão e naturalidade</span> em cada procedimento."
                             </p>
                             <p>
-                                Inauguramos nosso espaço com o objetivo de elevar o conceito de autocuidado, oferecendo um ambiente acolhedor e técnicas de ponta que garantem precisão e naturalidade em cada procedimento.
-                            </p>
-                            <p>
-                                Nossa filosofia baseia-se no atendimento personalizado: entendemos que cada rosto possui uma história única, e nosso papel é realçar o que há de melhor em você.
+                                Nossa filosofia baseia-se no atendimento personalizado: entendemos que cada rosto possui uma história única, e nosso papel é realçar o que há de <span className="text-gold-600 font-medium">melhor em você</span>.
                             </p>
                         </div>
 

@@ -1,22 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  --font-serif: var(--font-playfair);
-  --font-sans: var(--font-inter);
+  --color-nude-50: #faf7f2;
+  --color-nude-100: #f5ede4;
+  --color-nude-200: #ebe0d3;
+  --color-gold-300: #e8d594;
+  --color-gold-400: #d4ba73;
+  --color-gold-500: #b49466;
+  --color-gold-600: #8a704a;
+  --color-charcoal: #1a1a1a;
+}
+
+:root {
+  --background: #fcfcfc;
+  --background-dark: #0a0a0a;
+  --background-dark-alt: #141414;
+  --foreground: #2d2d2d;
+  --foreground-dark: #ffffff;
 
   --color-nude-50: #faf7f2;
   --color-nude-100: #f5ede4;
   --color-nude-200: #ebe0d3;
-  --color-gold-500: #d4af37;
-  --color-gold-600: #c5a028;
-  --color-charcoal: #2d2d2d;
-  --color-off-white: #fcfcfc;
-}
+  --color-gold-300: #e8d594;
+  --color-gold-400: #d4ba73;
+  --color-gold-500: #b49466;
+  --color-gold-600: #8a704a;
 
-:root {
-  --background: var(--color-off-white);
-  --foreground: var(--color-charcoal);
-  
   --primary: var(--color-gold-500);
   --accent: var(--color-nude-100);
 }
@@ -28,12 +37,21 @@
 body {
   background-color: var(--background);
   color: var(--foreground);
+  font-family: var(--font-montserrat), sans-serif;
 }
 
-h1, h2, h3, h4, .font-serif {
-  font-family: var(--font-serif), serif;
+h1,
+h2,
+h3,
+h4,
+.font-serif {
+  font-family: var(--font-playfair), serif !important;
 }
 
-p, .font-sans {
-  font-family: var(--font-sans), sans-serif;
+p,
+span,
+div,
+a,
+.font-sans {
+  font-family: var(--font-montserrat), sans-serif;
 }

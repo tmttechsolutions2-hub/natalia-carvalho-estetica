@@ -61,7 +61,7 @@ const OurSpace = () => {
                         transition={{ delay: 0.3 }}
                         className="text-charcoal/70 font-sans leading-relaxed"
                     >
-                        Um refúgio de sofisticação e cuidado em Divinópolis, planejado em cada detalhe para o seu total conforto e bem-estar.
+                        Um refúgio de <span className="text-gold-600 font-medium">sofisticação e cuidado</span> em Divinópolis, planejado em cada detalhe para o seu total conforto e bem-estar.
                     </motion.p>
                 </div>
 

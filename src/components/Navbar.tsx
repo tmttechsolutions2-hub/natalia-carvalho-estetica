@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 
 const Navbar = () => {
@@ -26,13 +27,19 @@ const Navbar = () => {
     return (
         <nav
             className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled
-                ? "bg-off-white/70 backdrop-blur-md py-4 shadow-sm"
-                : "bg-transparent py-6"
+                ? "bg-white/95 backdrop-blur-md py-4 shadow-sm"
+                : "bg-white py-6 shadow-sm"
                 }`}
         >
             <div className="container mx-auto px-6 flex justify-between items-center">
-                <Link href="/" className="text-2xl font-serif tracking-tight text-charcoal">
-                    Natália Carvalho <span className="text-gold-500 underline decoration-gold-200 underline-offset-4">Estética</span>
+                <Link href="/" className="relative h-10 w-48 flex items-center">
+                    <Image
+                        src="/images/logo-natalia-v2.png"
+                        alt="Natália Carvalho Estética"
+                        fill
+                        className="object-contain object-left"
+                        priority
+                    />
                 </Link>
 
                 {/* Desktop Menu */}
@@ -47,7 +54,7 @@ const Navbar = () => {
                         </Link>
                     ))}
                     <Link
-                        href="https:wa.me/553799999999"
+                        href="/agendamento"
                         className="bg-gold-500 hover:bg-gold-600 text-white px-6 py-2.5 rounded-full text-sm font-semibold transition-all hover:scale-105 active:scale-95 shadow-md shadow-gold-500/20 uppercase tracking-widest"
                     >
                         Agendar Agora
@@ -77,7 +84,7 @@ const Navbar = () => {
                         </Link>
                     ))}
                     <Link
-                        href="https:wa.me/553799999999"
+                        href="/agendamento"
                         className="bg-gold-500 text-white text-center py-3 rounded-full text-sm font-bold uppercase tracking-widest mt-4"
                         onClick={() => setIsMobileMenuOpen(false)}
                     >

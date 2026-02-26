@@ -293,7 +293,7 @@ export default function BookingWizard() {
                 const year = currentMonth.getFullYear();
                 const formattedDateTime = `${day}/${month}/${year} às ${bookingData.time}`;
 
-                const webhookUrl = "https://tmttech-manager.vercel.app/api/webhook/custom/ac6e8583-a361-48d7-8cdf-535ec3bdb862?empresaId=7598fb30-3852-4a75-9259-18825da4a316";
+                const webhookUrl = "/api/proxy-webhook";
 
                 const payload = {
                     phone: phoneWithDDI,

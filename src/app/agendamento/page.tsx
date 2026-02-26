@@ -282,6 +282,36 @@ export default function BookingWizard() {
             // Success
             setIsSuccess(true);
 
+            // 5. Send Webhook to TMT Tech Manager
+            try {
+                const normalizedPhone = bookingData.client.phone.replace(/\D/g, "");
+                const phoneWithDDI = normalizedPhone.startsWith("55") ? normalizedPhone : `55${normalizedPhone}`;
+                const servicesString = bookingData.selectedServices.map(s => s.name).join(' + ');
+
+                // Format the date for the webhook: DD/MM/YYYY às HH:mm
+                const [day, month] = bookingData.date!.split('/');
+                const year = currentMonth.getFullYear();
+                const formattedDateTime = `${day}/${month}/${year} às ${bookingData.time}`;
+
+                const webhookUrl = "https://tmttech-manager.vercel.app/api/webhook/custom/ac6e8583-a361-48d7-8cdf-535ec3bdb862?empresaId=7598fb30-3852-4a75-9259-18825da4a316";
+
+                await fetch(webhookUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        phone: phoneWithDDI,
+                        name: bookingData.client.name,
+                        data: {
+                            servico: servicesString,
+                            data_agendamento: formattedDateTime
+                        }
+                    })
+                });
+            } catch (webhookErr) {
+                console.error("Webhook error:", webhookErr);
+                // We don't block the user's success experience if the webhook fails
+            }
+
             // Scroll to top
             window.scrollTo({ top: 0, behavior: 'smooth' });
 

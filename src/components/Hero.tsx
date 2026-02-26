@@ -16,7 +16,7 @@ const Hero = () => {
                     <img
                         src="/images/natalia-profissional.png"
                         alt="Natália Carvalho"
-                        className="w-full h-full object-cover object-center"
+                        className="w-full h-full object-cover object-[center_15%]"
                     />
                     {/* Fade to dark at the bottom */}
                     <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--background-dark)] to-transparent" />

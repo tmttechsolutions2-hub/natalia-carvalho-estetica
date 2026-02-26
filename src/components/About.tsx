@@ -29,10 +29,6 @@ const About = () => {
                         </div>
                         {/* Decorative element */}
                         <div className="absolute top-10 -right-8 w-full h-full border border-gold-400/30 rounded-t-full rounded-b-3xl z-0" />
-                        <div className="absolute -bottom-5 -left-3 sm:-bottom-8 sm:-left-8 bg-gold-500 text-white p-5 sm:p-8 rounded-full aspect-square flex flex-col items-center justify-center z-20 shadow-xl border-4 border-white">
-                            <p className="font-serif text-3xl sm:text-4xl mb-1 leading-none">8+</p>
-                            <p className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-center">Anos<br />Exp.</p>
-                        </div>
                     </motion.div>
 
                     {/* Text side */}

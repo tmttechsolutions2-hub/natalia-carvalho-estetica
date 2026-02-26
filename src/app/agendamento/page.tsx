@@ -343,7 +343,7 @@ export default function BookingWizard() {
             {/* Step Content Area */}
             <div className="bg-white border border-nude-100/60 rounded-[32px] p-6 md:p-10 shadow-sm relative overflow-hidden min-h-[400px]">
                 {/* Subtle Background Image */}
-                <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none">
+                <div className="absolute inset-0 z-0 opacity-[0.1] pointer-events-none">
                     <img
                         src="/images/clinic_booking_banner.png"
                         alt=""

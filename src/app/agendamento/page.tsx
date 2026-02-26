@@ -517,7 +517,7 @@ export default function BookingWizard() {
                                                     key={time}
                                                     onClick={() => setBookingData({ ...bookingData, time })}
                                                     className={`py-3.5 rounded-xl font-bold text-center border-2 transition-all ${isActive
-                                                        ? "border-gold-500 bg-gold-50 text-gold-600 shadow-sm shadow-gold-500/10"
+                                                        ? "border-gold-500 bg-white shadow-sm shadow-gold-500/10"
                                                         : "border-nude-100 bg-white text-charcoal hover:border-gold-500/40 hover:bg-gold-50/10"
                                                         }`}
                                                 >

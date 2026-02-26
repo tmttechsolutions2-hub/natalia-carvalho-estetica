@@ -8,7 +8,7 @@ const About = () => {
     return (
         <section id="sobre" className="py-24 lg:py-32 bg-white overflow-hidden">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-20 items-center">
                     {/* Image side */}
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
@@ -29,9 +29,9 @@ const About = () => {
                         </div>
                         {/* Decorative element */}
                         <div className="absolute top-10 -right-8 w-full h-full border border-gold-400/30 rounded-t-full rounded-b-3xl z-0" />
-                        <div className="absolute -bottom-8 -left-8 bg-gold-500 text-white p-8 rounded-full aspect-square flex flex-col items-center justify-center z-20 shadow-xl border-4 border-white">
-                            <p className="font-serif text-4xl mb-1 leading-none">8+</p>
-                            <p className="text-[10px] uppercase tracking-widest font-bold text-center">Anos<br />Exp.</p>
+                        <div className="absolute -bottom-5 -left-3 sm:-bottom-8 sm:-left-8 bg-gold-500 text-white p-5 sm:p-8 rounded-full aspect-square flex flex-col items-center justify-center z-20 shadow-xl border-4 border-white">
+                            <p className="font-serif text-3xl sm:text-4xl mb-1 leading-none">8+</p>
+                            <p className="text-[9px] sm:text-[10px] uppercase tracking-widest font-bold text-center">Anos<br />Exp.</p>
                         </div>
                     </motion.div>
 
@@ -46,7 +46,7 @@ const About = () => {
                         <span className="text-gold-500 font-semibold uppercase tracking-[0.3em] text-xs mb-4 block">
                             Quem Somos
                         </span>
-                        <h2 className="text-5xl lg:text-6xl font-serif text-charcoal mb-8 leading-[1.1]">
+                        <h2 className="text-3xl sm:text-4xl lg:text-6xl font-serif text-charcoal mb-6 md:mb-8 leading-[1.1]">
                             Natália Carvalho: <br />
                             <span className="text-gold-500 italic font-light">Paixão por transformar olhares.</span>
                         </h2>

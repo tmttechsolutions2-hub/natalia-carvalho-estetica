@@ -45,9 +45,9 @@ const Hero = () => {
                         </span>
 
                         {/* Title: Pure Luxury Typography */}
-                        <h1 className="text-5xl sm:text-6xl lg:text-[5.5rem] font-serif text-white leading-[1.05] mb-12 drop-shadow-2xl">
+                        <h1 className="text-4xl sm:text-6xl lg:text-[5.5rem] font-serif text-white leading-[1.05] mb-8 md:mb-12 drop-shadow-2xl">
                             Beleza que <br />
-                            <span className="italic text-gold-400 font-light block mt-4">se renova.</span>
+                            <span className="italic text-gold-400 font-light block mt-2 md:mt-4">se renova.</span>
                         </h1>
 
                         {/* Description: Structured and Elegant */}
@@ -59,10 +59,10 @@ const Hero = () => {
                         </div>
 
                         {/* High-Impact Actions */}
-                        <div className="flex flex-col sm:flex-row gap-10 justify-center lg:justify-start items-center">
+                        <div className="flex flex-col sm:flex-row gap-5 sm:gap-10 justify-center lg:justify-start items-center">
                             <Link
                                 href="/agendamento"
-                                className="group relative overflow-hidden bg-gold-500 text-[var(--background-dark)] px-16 py-6 rounded-none font-extrabold transition-all shadow-2xl shadow-gold-500/30 uppercase tracking-[0.4em] text-[11px]"
+                                className="group relative overflow-hidden bg-gold-500 text-[var(--background-dark)] px-8 py-4 sm:px-16 sm:py-6 w-full sm:w-auto text-center rounded-none font-extrabold transition-all shadow-2xl shadow-gold-500/30 uppercase tracking-[0.4em] text-[11px]"
                             >
                                 <span className="relative z-10 group-hover:text-white transition-colors duration-500">Agendar Agora</span>
                                 <div className="absolute inset-0 bg-black/90 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.165, 0.84, 0.44, 1]" />

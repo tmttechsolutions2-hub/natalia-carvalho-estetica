@@ -9,7 +9,7 @@ const Contact = () => {
     return (
         <section id="localizacao" className="py-24 bg-[var(--background-dark)]">
             <div className="container mx-auto px-6">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16">
                     {/* Contact Info */}
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
@@ -20,7 +20,7 @@ const Contact = () => {
                         <span className="text-gold-500 font-semibold uppercase tracking-[0.3em] text-xs mb-3 block">
                             Contato & Visita
                         </span>
-                        <h2 className="text-4xl lg:text-5xl font-serif text-white mb-8">
+                        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-serif text-white mb-6 md:mb-8">
                             Onde nos encontrar
                         </h2>
                         <p className="text-white/60 mb-12 max-w-md">
@@ -68,7 +68,7 @@ const Contact = () => {
                             <motion.button
                                 whileHover={{ scale: 1.02 }}
                                 whileTap={{ scale: 0.98 }}
-                                className="mt-12 inline-flex items-center space-x-3 bg-gold-500 text-[var(--background-dark)] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-sm shadow-[0_10px_30_rgba(180,148,102,0.2)]"
+                                className="mt-10 w-full sm:w-auto justify-center inline-flex items-center space-x-3 bg-gold-500 text-[var(--background-dark)] px-10 py-4 rounded-full font-bold uppercase tracking-widest text-sm shadow-[0_10px_30px_rgba(180,148,102,0.2)]"
                             >
                                 <span>Agendar Minha Visita</span>
                             </motion.button>

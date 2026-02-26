@@ -65,7 +65,7 @@ const OurSpace = () => {
                     </motion.p>
                 </div>
 
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px]">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:h-[600px] auto-rows-auto">
                     {photos.map((photo, index) => (
                         <motion.div
                             key={index}

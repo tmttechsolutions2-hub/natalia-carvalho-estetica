@@ -2,7 +2,22 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
-import { ArrowLeft, CheckCircle2, Circle, ChevronLeft, ChevronRight, Loader2 } from "lucide-react";
+import {
+    Calendar as CalendarIcon,
+    Clock,
+    User,
+    Phone,
+    Mail,
+    ChevronRight,
+    ChevronLeft,
+    CheckCircle2,
+    Circle,
+    Loader2,
+    ArrowLeft,
+    AlertCircle,
+    Info,
+    CalendarDays
+} from 'lucide-react';
 import { supabase } from "../../lib/supabase";
 
 // Types for State
@@ -29,6 +44,8 @@ export default function BookingWizard() {
     const [currentStep, setCurrentStep] = useState(1);
     const [isSuccess, setIsSuccess] = useState(false);
     const [isSubmitting, setIsSubmitting] = useState(false);
+    const [webhookStatus, setWebhookStatus] = useState<'idle' | 'sending' | 'success' | 'error'>('idle');
+    const [error, setError] = useState<string | null>(null);
     const [services, setServices] = useState<ServiceType[]>([]);
     const [isLoadingServices, setIsLoadingServices] = useState(true);
     const [bookingData, setBookingData] = useState<BookingState>({
@@ -282,15 +299,15 @@ export default function BookingWizard() {
             // Success
             setIsSuccess(true);
 
-            // 5. Send Webhook to TMT Tech Manager
+            // 5. Send Webhook to TMT Tech Manager via Proxy
+            setWebhookStatus('sending');
             try {
                 const normalizedPhone = bookingData.client.phone.replace(/\D/g, "");
                 const phoneWithDDI = normalizedPhone.startsWith("55") ? normalizedPhone : `55${normalizedPhone}`;
                 const servicesString = bookingData.selectedServices.map(s => s.name).join(' + ');
 
-                // Format the date for the webhook: DD/MM/YYYY às HH:mm
-                const [day, month] = bookingData.date!.split('/');
-                const year = currentMonth.getFullYear();
+                const day = bookingData.date!.split('/')[0];
+                const month = bookingData.date!.split('/')[1];
                 const formattedDateTime = `${day}/${month}/${year} às ${bookingData.time}`;
 
                 const webhookUrl = "/api/proxy-webhook";
@@ -304,16 +321,28 @@ export default function BookingWizard() {
                     }
                 };
 
-                console.log("Enviando Webhook para TMT Manager:", payload);
+                console.log("Enviando Webhook (via Proxy):", payload);
 
-                await fetch(webhookUrl, {
+                const response = await fetch(webhookUrl, {
                     method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(payload),
                 });
-            } catch (webhookErr) {
-                console.error("Webhook error:", webhookErr);
-                // We don't block the user's success experience if the webhook fails
+
+                const result = await response.json();
+
+                if (response.ok && result.success) {
+                    console.log("Webhook enviado com sucesso pelo servidor!");
+                    setWebhookStatus('success');
+                } else {
+                    console.error("Erro ao enviar webhook:", result);
+                    setWebhookStatus('error');
+                }
+            } catch (err) {
+                console.error("Erro ao disparar webhook:", err);
+                setWebhookStatus('error');
             }
 
             // Scroll to top
@@ -709,8 +738,35 @@ export default function BookingWizard() {
                                 <p className="text-charcoal/60 text-lg mb-8 max-w-md mx-auto">
                                     Tudo certo, <strong>{bookingData.client.name.split(' ')[0]}</strong>! Seu horário está garantido para dia <strong>{bookingData.date}</strong> às <strong>{bookingData.time}</strong>.
                                 </p>
-                                <div className="bg-[#faf9f7] border border-nude-100 rounded-2xl p-6 mb-10 max-w-sm mx-auto text-sm text-charcoal/60 font-medium">
-                                    Enviamos os detalhes para o seu Whatsapp. O pagamento de {totalValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} será realizado no local.
+                                <div className="bg-[#faf9f7] border border-nude-100 rounded-2xl p-6 mb-4 max-w-sm mx-auto text-sm text-charcoal/60 font-medium">
+                                    O pagamento de {totalValue.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })} será realizado no local.
+                                </div>
+
+                                {/* Webhook Status Window */}
+                                <div className={`mb-10 max-w-sm mx-auto p-4 rounded-xl border flex items-center gap-3 text-left transition-all duration-500 animate-in slide-in-from-bottom-2 ${webhookStatus === 'success' ? 'bg-emerald-50 border-emerald-100 text-emerald-700' :
+                                    webhookStatus === 'error' ? 'bg-rose-50 border-rose-100 text-rose-700' :
+                                        'bg-gray-50 border-gray-100 text-gray-500'
+                                    }`}>
+                                    <div className={`p-2 rounded-full ${webhookStatus === 'success' ? 'bg-emerald-500/10' :
+                                        webhookStatus === 'error' ? 'bg-rose-500/10' :
+                                            'bg-gray-500/10'
+                                        }`}>
+                                        {webhookStatus === 'sending' ? <Loader2 size={16} className="animate-spin" /> :
+                                            webhookStatus === 'success' ? <CheckCircle2 size={16} /> :
+                                                webhookStatus === 'error' ? <AlertCircle size={16} /> :
+                                                    <Info size={16} />}
+                                    </div>
+                                    <div className="flex-1">
+                                        <p className="text-xs font-bold uppercase tracking-widest mb-0.5">
+                                            Integração TMT Manager
+                                        </p>
+                                        <p className="text-sm opacity-80">
+                                            {webhookStatus === 'sending' && "Disparando automação..."}
+                                            {webhookStatus === 'success' && "Webhook enviado com sucesso."}
+                                            {webhookStatus === 'error' && "Erro ao enviar. Tente novamente."}
+                                            {webhookStatus === 'idle' && "Aguardando confirmação..."}
+                                        </p>
+                                    </div>
                                 </div>
                                 <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                                     <Link

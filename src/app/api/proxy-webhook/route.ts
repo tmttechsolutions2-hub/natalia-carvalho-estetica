@@ -4,21 +4,17 @@ export async function POST(request: Request) {
     try {
         const body = await request.json();
 
-        // Tentativa 1: URL exatamente como fornecida (Path param para ruleId + Query param para empresaId)
-        const baseUrl = "https://tmttech-manager.vercel.app/api/webhook/custom/ac6e8583-a361-48d7-8cdf-535ec3bdb862";
-        const empresaId = "7598fb30-3852-4a75-9259-18825da4a316";
+        // Usando a URL EXATA fornecida, inclusive com o case das letras (Maiúsculas no RuleId)
+        const finalUrl = "https://tmttech-manager.vercel.app/api/webhook/custom/AC6E8583-A361-48D7-8CDF-535EC3BDB862?empresaId=7598fb30-3852-4a75-9259-18825da4a316";
 
-        const finalUrl = `${baseUrl}?empresaId=${empresaId}`;
-
-        console.log("Proxy: Enviando para:", finalUrl);
-        console.log("Proxy: Body:", JSON.stringify(body));
+        console.log("Proxy: Iniciando envio para TMT Manager...");
+        console.log("Proxy: Payload:", JSON.stringify(body));
 
         const response = await fetch(finalUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Accept': 'application/json',
-                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36'
+                'Accept': 'application/json'
             },
             body: JSON.stringify(body),
         });

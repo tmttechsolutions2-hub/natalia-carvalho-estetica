@@ -69,7 +69,7 @@ export default function AdminDashboard() {
                     services (name)
                 )
             `)
-            .in('status', ['pendente', 'concluido'])
+            .in('status', ['pendente', 'confirmado', 'concluido'])
             .order('appointment_time', { ascending: true });
 
         if (data && !error) {
@@ -127,8 +127,11 @@ export default function AdminDashboard() {
             const formattedDate = `${dayString}/${monthString}`;
             const weekday = date.toLocaleDateString("pt-BR", { weekday: "short" }).toUpperCase().replace('.', '');
 
-            // Calculate appointments dynamically from the array (counting only pending)
-            const totalAppointments = allPendingAppointments.filter(app => app.date === formattedDate && app.dbStatus === 'pendente').length;
+            // Calculate appointments dynamically from the array (counting only pending/confirmed)
+            const totalAppointments = allPendingAppointments.filter(app =>
+                app.date === formattedDate &&
+                (app.dbStatus === 'pendente' || app.dbStatus === 'confirmado')
+            ).length;
             const hasAppointments = totalAppointments > 0;
 
             days.push({
@@ -156,7 +159,9 @@ export default function AdminDashboard() {
     }, [selectedDate, currentMonth]);
 
     const allAppointmentsForSelectedDate = allPendingAppointments.filter(apt => apt.date === selectedDate);
-    const displayAppointments = allAppointmentsForSelectedDate.filter(apt => apt.dbStatus === 'pendente');
+    const displayAppointments = allAppointmentsForSelectedDate.filter(apt =>
+        apt.dbStatus === 'pendente' || apt.dbStatus === 'confirmado'
+    );
 
     // Calculate metrics for the banner
     const dailyRevenueValue = allAppointmentsForSelectedDate
@@ -407,9 +412,14 @@ export default function AdminDashboard() {
                                         <div className="flex items-center space-x-3 mb-1.5">
                                             <User size={16} className="text-charcoal/40" />
                                             <h4 className="text-charcoal font-bold font-serif text-lg">{apt.client}</h4>
-                                            {apt.dbStatus === 'pendente' && apt.isPast && (
+                                            {(apt.dbStatus === 'pendente' || apt.dbStatus === 'confirmado') && apt.isPast && (
                                                 <span className="bg-red-500 text-[10px] text-white font-bold px-2 py-0.5 rounded uppercase tracking-wider">
                                                     AGUARDANDO CONCLUSÃO
+                                                </span>
+                                            )}
+                                            {apt.dbStatus === 'confirmado' && !apt.isPast && (
+                                                <span className="bg-emerald-500 text-[10px] text-white font-bold px-2 py-0.5 rounded uppercase tracking-wider">
+                                                    CONFIRMADO PELO CLIENTE
                                                 </span>
                                             )}
                                         </div>
